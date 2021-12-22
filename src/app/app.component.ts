@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {IPost} from "./shared/interfaces/posts";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'pw1';
+  public posts: IPost[] = [
+    {title: "React", text: "JavaScript-библиотека для создания пользовательских интерфейсов", id: 1},
+    {
+      title: "Angular",
+      text: "Angular is an app-design framework and development platform for creating efficient and sophisticated single-page apps.",
+      id: 2
+    },
+    {
+      title: "Vue",
+      text: "Vue (pronounced /vjuː/, like view) is a progressive framework for building user interfaces",
+      id: 3
+    },
+    {title: "Node.js", text: "Node.js® — це JavaScript–оточення побудоване на JavaScript–рушієві Chrome V8.", id: 4}
+  ]
+
 }
