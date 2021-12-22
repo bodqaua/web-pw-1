@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { PostComponent } from './components/post/post.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
 import {FormsModule} from "@angular/forms";
+import { HoverDirective } from './shared/directives/hover.directive';
+import { AlertDirective } from './shared/directives/alert.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostComponent,
     PostFormComponent,
+    HoverDirective,
+    AlertDirective,
   ],
   imports: [
     BrowserModule,
