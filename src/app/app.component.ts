@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {IPost} from "./shared/interfaces/posts";
+import {PostsService} from "./shared/services/posts.service";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -7,19 +9,14 @@ import {IPost} from "./shared/interfaces/posts";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public posts: IPost[] = [
-    {title: "React", text: "JavaScript-библиотека для создания пользовательских интерфейсов", id: 1},
-    {
-      title: "Angular",
-      text: "Angular is an app-design framework and development platform for creating efficient and sophisticated single-page apps.",
-      id: 2
-    },
-    {
-      title: "Vue",
-      text: "Vue (pronounced /vjuː/, like view) is a progressive framework for building user interfaces",
-      id: 3
-    },
-    {title: "Node.js", text: "Node.js® — це JavaScript–оточення побудоване на JavaScript–рушієві Chrome V8.", id: 4}
-  ]
+  public posts$?: BehaviorSubject<IPost[]>;
+
+  constructor(private postService: PostsService
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.posts$ = this.postService.getPosts();
+  }
 
 }

@@ -1,4 +1,5 @@
 <div class="card" *ngIf="post">
   <h2>{{post.title}}</h2>
   <p>#{{post.id}} - {{post.text}}</p>
+  <button class="btn btn-danger" (click)="deletePost()">Delete</button>
 </div>
