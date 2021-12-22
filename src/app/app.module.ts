@@ -8,6 +8,7 @@ import { PostFormComponent } from './components/post-form/post-form.component';
 import {FormsModule} from "@angular/forms";
 import { HoverDirective } from './shared/directives/hover.directive';
 import { AlertDirective } from './shared/directives/alert.directive';
+import { FilterPipe } from './shared/pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { AlertDirective } from './shared/directives/alert.directive';
     PostFormComponent,
     HoverDirective,
     AlertDirective,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

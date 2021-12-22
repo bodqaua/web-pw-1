@@ -6,3 +6,5 @@ export interface IBasicPost {
 export interface IPost extends IBasicPost{
   id: number;
 }
+
+export type FilterType = keyof IBasicPost;

@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {PostsService} from "../../shared/services/posts.service";
-import {IBasicPost} from "../../shared/interfaces/posts";
+import {FilterType, IBasicPost} from "../../shared/interfaces/posts";
 
 @Component({
   selector: 'app-post-form',
@@ -8,6 +8,11 @@ import {IBasicPost} from "../../shared/interfaces/posts";
   styleUrls: ['./post-form.component.scss']
 })
 export class PostFormComponent implements OnInit {
+  @Output("filterValueChange") filterValueChange = new EventEmitter<string>();
+  @Output("filterTypeChange") filterTypeChange = new EventEmitter<FilterType>();
+
+  public filterType: FilterType = "title";
+  public titleSearching: string = "";
   public title: string = "";
   public text: string = "";
 
@@ -27,6 +32,19 @@ export class PostFormComponent implements OnInit {
     const post: IBasicPost = {title: this.title, text: this.text};
     this.postService.addPost(post);
     this.clearModel();
+  }
+
+  public onChangeSearch(): void {
+    this.filterValueChange.emit(this.titleSearching);
+  }
+
+  public isFilterActive(type: FilterType): boolean {
+    return this.filterType === type;
+  }
+
+  public onFilterTypeChange(type: FilterType): void {
+    this.filterType = type;
+    this.filterTypeChange.emit(type);
   }
 
   private clearModel(): void {
