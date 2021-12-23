@@ -1,0 +1,54 @@
+<div class="container" *ngIf="form">
+  <form class="card" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1>Angular Forms</h1>
+    <div class="form-control">
+      <label>Email</label>
+      <input type="text" placeholder="Email" formControlName="email">
+      <div class="validation text-danger" *ngIf="isControlHasError('email', 'required')">
+        Поле email не может быть пустым.
+      </div>
+      <div class="validation text-danger" *ngIf="isControlHasError('email', 'email')">
+        Неверный email
+      </div>
+      <div class="validation text-danger" *ngIf="isControlHasError('email', 'restrictedRusEmail')">
+        Email запрещен
+      </div>
+    </div>
+    <div class="form-control">
+      <label>Пароль</label>
+      <input type="password" placeholder="Пароль" formControlName="password">
+      <div class="validation text-danger" *ngIf="isControlHasError('password', 'required')">Поле пароля не может быть
+        пустым.
+      </div>
+      <div class="validation text-danger" *ngIf="isControlHasError('password', 'minlength')">Неправильный
+        пароль, введите еще {{form.get('password')?.errors?.['minlength']?.requiredLength -
+        form.get('password')?.errors?.['minlength']?.actualLength}} символов
+      </div>
+    </div>
+    <div class="card" formGroupName="address">
+      <h2>Адрес</h2>
+      <div class="form-control">
+        <label>Страна</label>
+        <select formControlName="country">
+          <option value="ua">Украина</option>
+          <option value="pl">Польша</option>
+          <option value="de">Германия</option>
+        </select>
+      </div>
+      <div class="form-control">
+        <input type="text" formControlName="city">
+      </div>
+      <button class="btn" (click)="setCapital()">Выбрать столицу</button>
+    </div>
+    <div class="card" formArrayName="skills">
+      <h2>Ваши навыки</h2>
+      <button class="btn" type="button" (click)="addSkill()">Добавить умение</button>
+      <div *ngFor="let skill of skillsFormArrayIterable.controls; let i=index">
+        <label> Умение {{i + 1}}</label>
+        <input type="text" [formControlName]="i">
+        <button (click)="removeSkill(i)">Remove</button>
+      </div>
+    </div>
+    <button class="btn" [disabled]="form.invalid">Отправить</button>
+  </form>
+</div>

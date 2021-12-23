@@ -1,11 +1,9 @@
-<div class="container">
-  <h1>Angular Component</h1>
-  <app-post-form
-    (filterValueChange)="onFilterChange($event)"
-    (filterTypeChange)="onTypeChange($event)"
-  ></app-post-form>
-  <hr/>
-  <ng-container *ngFor="let post of (posts$ | filter:filterValue:filterType) | async">
-    <app-post [post]="post"></app-post>
-  </ng-container>
-</div>
+<ul>
+  <li>
+    <a routerLink="/posts">Posts</a>
+  </li>
+  <li>
+    <a routerLink="/register">Register</a>
+  </li>
+</ul>
+<router-outlet></router-outlet>
